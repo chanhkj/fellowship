@@ -22,32 +22,60 @@ var body = document.querySelector('body');
 
 // Part 1
 
-
-function makeMiddleEarth() {
+function makeMiddleEarth () {
   // create a section tag with an id of middle-earth
+  var middleEarth = document.createElement('section')
+  middleEarth.setAttribute('id', 'middle-earth')
+  document.body.appendChild(middleEarth)
+
   // add each land as an article tag
-  // inside each article tag include an h1 with the name of the land
-  // append middle-earth to your document body
+  for (var i = 0; i < lands.length; i++) {
+    var articleTag = document.createElement('article')
+    middleEarth.appendChild(articleTag)
+    var h1Tag = document.createElement('h1')
+    h1Tag.textContext = lands[i]
+    articleTag.appendChild(h1Tag)
+    // inside each article tag include an h1 with the name of the land
+
+    // append middle-earth to your document body
+  }
 }
-
-makeMiddleEarth();
-
+makeMiddleEarth(lands)
 
 // Part 2
 
-function makeHobbits() {
+function makeHobbits (hobbits) {
+
   // display an unordered list of hobbits in the shire (which is the second article tag on the page)
+var hobbitsList = document.createElement('ul');
+  for (var i = 0; i < hobbits.length; i++) {
+    var hobbit = document.createElement('li')
+    hobbit.textContent = hobbits[i];
+    hobbit.className = "hobbit";
+    hobbitsList.appendChild(hobbit)
+  }
   // give each hobbit a class of hobbit
+  var shire = document.getElementsByTagName('article')[0];
+  shire.appendChild(hobbitsList);
+
+
 }
+makeHobbits(hobbits);
 
 
 // Part 3
 
 function keepItSecretKeepItSafe() {
   // create a div with an id of 'the-ring'
+  var ring = document.createElement('div');
+  ring.id = "the-ring";
   // give the div a class of 'magic-imbued-jewelry'
+
   // add an event listener so that when a user clicks on the ring, the nazgulScreech function (provided) is invoked
+//  document.getElementsById("the-ring").addEventListener("click", )
   // add the ring as a child of Frodo
+  var frodo = document.getElementsByClassName('hobbit')[0];
+  frodo.appendChild(ring);
 }
 
 
@@ -56,9 +84,18 @@ function keepItSecretKeepItSafe() {
 
 function makeBuddies() {
   // create an aside tag
+  var asideTag = document.createElement('aside');
   // attach an unordered list of the 'buddies' in the aside
+  var buddiesList = document.createElement('ul');
   // insert your aside as a child element of rivendell
+  asideTag.appendChild(buddiesList);
+  var rivendell = document.getElementsByTagName('article')[1];
+  rivendell.parentNode.insertBefore(asideTag, rivendell);
+
+
 }
+makeBuddies(buddies);
+
 
 
 // Part 5
@@ -66,7 +103,12 @@ function makeBuddies() {
 
 function beautifulStranger() {
   // change the 'Strider' textnode to 'Aragorn'
+  var buddies = document.getElementsByTagName('aside')[0].getElementsByTagName('li');
+  var strider = buddies[3];
+  strider.textContent = "Aragorn";
 }
+beautifulStranger();
+
 
 
 // Part 6
@@ -108,7 +150,7 @@ function hornOfGondor() {
 
 // Part 10
 
-function itsDangerousToGoAlone(){
+function itsDangerousToGoAlone() {
   // take Frodo and Sam out of the fellowship and move them to Mordor
   // add a div with an id of 'mount-doom' to Mordor
 }
